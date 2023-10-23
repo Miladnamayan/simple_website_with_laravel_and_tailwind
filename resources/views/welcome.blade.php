@@ -11,4 +11,11 @@
       </div>
     </div>
   </div>
+
+  <div class="btn-group">
+    <input type="radio" name="options" data-title="1" class="btn" />
+    <input type="radio" name="options" data-title="2" class="btn" checked />
+    <input type="radio" name="options" data-title="3" class="btn" />
+    <input type="radio" name="options" data-title="4" class="btn" />
+  </div>
 @endsection

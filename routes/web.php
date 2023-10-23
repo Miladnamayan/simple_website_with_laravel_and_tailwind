@@ -35,3 +35,11 @@ Route::get('/register3', function () {
 Route::get('/register4', function () {
     return view('register4');
 });
+
+
+
+
+
+Route::get('/home', function () {
+    return view('home');
+});

@@ -13,11 +13,17 @@
         <script src="elyas/script.js"></script>
 
     </head>
-    <body >
+    <body>
 
-        @yield('content')
+        <div class="container sm mx-auto ">
 
+             @yield('content')
 
+        </div>
+
+    </body>
+</html>
+{{--
         <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
             <nav class="grid grid-flow-col gap-4">
               <a class="link link-hover">About us</a>
@@ -35,7 +41,5 @@
             <aside>
               <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
             </aside>
-          </footer>
+          </footer> --}}
 
-    </body>
-</html>

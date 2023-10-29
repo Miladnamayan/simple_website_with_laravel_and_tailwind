@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.blank')
 @section('content')
 
 <div class="carousel  w-full h-64"  >

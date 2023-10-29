@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.blank')
 @section('content')
 
 <div class="hero min-h-screen" style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);">

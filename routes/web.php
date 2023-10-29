@@ -43,3 +43,24 @@ Route::get('/register4', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+
+
+Route::get('/cards', function () {
+    return view('cards');
+});
+
+
+Route::get('/posts', function () {
+    return view('posts');
+});
+
+Route::get('/comments', function () {
+    return view('comments');
+});
+Route::get('/Author_Posts', function () {
+    return view('Author_posts');
+});
+Route::get('/Admin', function () {
+    return view('Admin');
+});

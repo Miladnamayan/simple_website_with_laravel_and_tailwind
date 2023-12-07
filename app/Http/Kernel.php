@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'check.entered.email' => \App\Http\Middleware\CheckEnteredEmail::class,
         'check.entered.name' => \App\Http\Middleware\CheckEnteredName::class,
         'check.entered.role' => \App\Http\Middleware\CheckEnteredRole::class,
+        'check.visited.home' => \App\Http\Middleware\CheckVisitedHome::class,
 
     ];
 }

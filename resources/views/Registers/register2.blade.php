@@ -51,7 +51,7 @@
           <div class="form-control">
             <label class="label">
             <span class="label-text">Your image</span>
-            <input  name="image" type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs  @error('image') is-invalid @enderror" />
+            <input  name="image" type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs  @error('image') is-invalid @enderror"   required />
             @error('image')
                 <span class="invalid-feedback text-red-600" role="alert">
                     <strong>{{ $message }}</strong>
@@ -98,6 +98,9 @@
           <div class="form-control mt-6">
             <a class="btn btn-outline btn-primary"  href={{route("register1")}}> Previous step</a>
           </div>
+
+
+          
         </form>
       </div>
     </div>

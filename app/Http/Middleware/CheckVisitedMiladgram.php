@@ -17,9 +17,9 @@ class CheckVisitedMiladgram
     public function handle(Request $request, Closure $next): Response
     {
 
-            if(!Session::get('visited_miladgram')){
-                return redirect()->route('welcome');
-            }
+        if(!Session::get('visited_miladgram')){
+            return redirect()->route('welcome');
+        }
 
         return $next($request);
 

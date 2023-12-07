@@ -35,7 +35,7 @@ class RegisterCcontroller extends Controller
 
     public function register2form(Request $request){
         $request->validate([
-            'image' => 'required|image|unique:users,image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|unique:users,image',
             'name' => 'required|string|min:4|max:20',
             'password' => 'required|confirmed|min:8',
         ]);
@@ -55,17 +55,16 @@ class RegisterCcontroller extends Controller
         $email = $request->session()->get('email');
         $image = $request->session()->get('image');
         $name = $request->session()->get('name');
-        $request->session()->get('password');
+        $password = $request->session()->get('password');
         $role =$request->input('role');
 
-        $user=User::updateOrCreate(['email' => $email],[
-                'email' => $email,
-                'image' => $image,
-                'name' => $name,
-                'password' => Hash::make($request['password']),
-                'role' => $role,
-            ]);
-        $user->sendEmailVerificationNotification();
+        User::updateOrCreate(['email' => $email],[
+            'email' => $email,
+            'image' => $image,
+            'name' => $name,
+            'password' => $password,
+            'role' => $role,
+        ]);
 
         session(['entered_role' => true]);
 
@@ -75,8 +74,8 @@ class RegisterCcontroller extends Controller
     public function register4(){
         $user = User::
         latest()->first();
-        session()->flush();
         return view('Registers.register4',['user'=> $user]);
+        session()->flush();
 
     }
     //todo redirect to first step if user is null

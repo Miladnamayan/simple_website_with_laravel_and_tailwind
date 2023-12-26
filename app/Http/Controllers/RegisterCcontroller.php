@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,15 +18,8 @@ class RegisterCcontroller extends Controller
         return view('Registers.register1');
     }
 
-    public function register1form(Request $request){
-        $request->validate([
-            'email' => 'required|email|max:255|unique:users,email',
-        ]);
-        $request->session()->put('email', $request->email);
-
-
-        session(['entered_email' => true]);
-
+    public function register1form(RegisterRequest $request){
+        session(['entered_email'=>true]);
         return redirect()->route('register2');
     }
 
@@ -33,17 +27,14 @@ class RegisterCcontroller extends Controller
         return view('Registers.register2');
     }
 
-    public function register2form(Request $request){
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|unique:users,image',
-            'name' => 'required|string|min:4|max:20',
-            'password' => 'required|confirmed|min:8',
-        ]);
+    public function register2form(RegisterRequest $request){
+
         $request->session()->put('name', $request->name);
         $request->session()->put('password', $request->password);
         $request->session()->put('image', $request->file('image')->store('avatars'));
+        session(['entered_name'=>true]);
 
-        session(['entered_name' => true]);
+        // session(['entered_name'=>true]);
         return redirect()->route('register3');
     }
 
@@ -78,5 +69,4 @@ class RegisterCcontroller extends Controller
         session()->flush();
 
     }
-    //todo redirect to first step if user is null
 }

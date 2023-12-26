@@ -1,37 +1,6 @@
 @extends('layouts.blank')
 @section('content')
 
-<div class="carousel  w-full h-64"  >
-    <div id="slide1" class="carousel-item relative w-full">
-      <img src="/images/02.jpg" class="w-full" />
-      <div class="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 top-1/2">
-        <a href="#slide4" class="btn btn-circle">❮</a>
-        <a href="#slide2" class="btn btn-circle">❯</a>
-      </div>
-    </div>
-    <div id="slide2" class="carousel-item relative w-full">
-      <img src="/images/03.jpg" class="w-full" />
-      <div class="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 top-1/2">
-        <a href="#slide1" class="btn btn-circle">❮</a>
-        <a href="#slide3" class="btn btn-circle">❯</a>
-      </div>
-    </div>
-    <div id="slide3" class="carousel-item relative w-full">
-      <img src="/images/04.jpg" class="w-full" />
-      <div class="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 top-1/2">
-        <a href="#slide2" class="btn btn-circle">❮</a>
-        <a href="#slide4" class="btn btn-circle">❯</a>
-      </div>
-    </div>
-    <div id="slide4" class="carousel-item relative w-full">
-      <img src="/images/05.jpg" class="w-full" />
-      <div class="absolute flex justify-between transform -translate-y-1/2 left-10 right-10 top-1/2">
-        <a href="#slide3" class="btn btn-circle">❮</a>
-        <a href="#slide1" class="btn btn-circle">❯</a>
-      </div>
-    </div>
-  </div>
-
 <div class="hero min-h-screen bg-base-200">
     <div class="hero-content flex-col lg:flex-row-reverse">
       <div class="text-center lg:text-left">
@@ -100,7 +69,7 @@
           </div>
 
 
-          
+
         </form>
       </div>
     </div>

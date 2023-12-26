@@ -25,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'password',
         'role',
+        'accept_status',
     ];
 
     /**
@@ -57,5 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+
+    public function scopeCreatedToday($query)
+    {
+        return $query->whereDate('created_at', today());
     }
 }

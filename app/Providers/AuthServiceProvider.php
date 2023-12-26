@@ -25,34 +25,24 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
-        // $this->postpol
-
-        // Gate::define('update',function($user , $posts){
-            // dd( $posts->where('user_id' , '=' , $user->id));
-        // Gate::define('update',function($user){
-            // $posts=Post::get()->where('user_id' , '=' , $user->id);
-            // $posts=   $post->where('user_id' , '=' , $user->id);
-            // $posts->where('user_id' , '=' , $user->id);
-            // dd($posts->where('user_id' , '=' , $user->id));
-        // return $posts->where('user_id' , '=' , $user->id);
-        // return
-        // $posts= Post::where('user_id' , '=' , $user->id);
-        // dd($post);
-        // return $posts;
-
-        // if($posts->where('user_id' , '=' , $user->id)){
-        //     return true;
-        // }else
-        // {
-        //     return false;
+        // Gate::define('delete_post',function($user , $post){
+        //     // dd($user);
+        //     if ($user->id===$post->user_id){
+        //         return true;
+        //     }else{
+        //         return false;
         //     }
 
-            // get()->where('user_id' , '=' , $user->id);
-
-        // return  $posts->where($posts->user_id = $user->id);
-
+        // });
+        // Gate::define('update_post',function($user , $post){
+        //     // dd($user);
+        //     if ($user->id===$post->user_id){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
 
         // });
+
     }
 }

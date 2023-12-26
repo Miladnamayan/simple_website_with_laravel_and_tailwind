@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckEnteredEmail
+class checkAuthor
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,9 @@ class CheckEnteredEmail
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Session::get('entered_email')){
-            return redirect()->route('register1');
+        if(Auth::user()->role == 'Author'){
+            return $next($request);
         }
-
-        return $next($request);
+        return redirect()->back()->with('unauthorised', 'You are not authorised to access Profile-page');
     }
 }

@@ -9,7 +9,7 @@ class LogoutController extends Controller
 {
     public function logout(Request $request) {
         Auth::logout();
-        // session()->delete('user');
+        session()->flush();
         return redirect()->route('login');
     }
 }

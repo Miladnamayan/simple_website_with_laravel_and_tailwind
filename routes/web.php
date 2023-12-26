@@ -1,15 +1,23 @@
 <?php
 
+use App\Http\Controllers\AcceptController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\DtailsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\NewPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublishController;
 use App\Http\Controllers\RegisterCcontroller;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -51,39 +59,60 @@ Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 //End Log/////////////////////////////////////
 
 // Home
-Route::prefix('home')->name('home.')->group(function (){
-    route::get('/',[HomeController:: class, 'home'])->name('view');
-    route::get('/{id}/category', [CategoryController::class, 'getCategory'])->name('Category');
+Route::prefix('home')->name('home.')->group(function () {
+    Route::get('/', [HomeController::class, 'home'])->name('view');
+    Route::get('/{category}', [CategoryController::class, 'getCategory'])->name('category');
 });
 // End Home/////////////////////////////////////
 
 // posts
-Route::prefix('posts')->name('posts.')->group(function (){
-    route::get('/{post}/view',[PostController:: class, 'view'])->name('view');
+Route::prefix('posts/{post}')->name('posts.')->group(function (){
+    route::get('/view',[PostController:: class, 'view'])->name('view');
     // comments
-        Route::prefix('/{post}/comments')->name('comments.')->group(function (){
-            route::get('/',[CommentController:: class, 'list'])->name('list');
-            route::post('/',[CommentController:: class, 'create'])->name('create');
-        });
+    Route::prefix('/comments')->name('comments.')->group(function (){
+        route::get('/',[CommentController:: class, 'list'])->name('list');
+        route::post('/',[CommentController:: class, 'create'])->name('create');
+    });
     //likes
-        Route::post('/{post}/likes', [LikeController::class, 'likes'])->name('likes');
+    Route::post('/likes', [LikeController::class, 'likes'])->name('likes');
 });
 // End posts/////////////////////////////////////
 
-// Profile
-Route::prefix('profiles')->name('profiles.')->group(function (){
-    route::get('/',[ProfileController:: class, 'profiles'])->middleware('check.visited.home')->name('view');
-    route::post('/profiles',[ProfileController:: class, 'profilesform'])->name('profilesform');
-    // newpost
-    Route::prefix('/newpost')->name('newpost.')->group(function (){
-        route::get('/',[NewPostController:: class, 'view'])->name('view');
-        route::post('/',[NewPostController:: class, 'create'])->name('create');
+// // Profile
+Route::prefix('profiles')->name('profiles.')->group(function () {
+    Route::get('/',[ProfileController:: class, 'profiles'])->middleware('check.Author')->name('view');
+
+    Route::post('/authorsmail', [ProfileController::class, 'authorsmail'])->name('authorsmail');
+    Route::post('/adminsnotification', [ProfileController::class, 'adminsnotification'])->name('adminsnotification');
+
+    Route::prefix('newpost')->name('newpost.')->group(function () {
+        Route::get('/', [NewPostController::class, 'view'])->name('view');
+        Route::post('/', [NewPostController::class, 'create'])->name('create');
     });
+
+    Route::prefix('{post}')->group(function () {
+        Route::post('publish_post', [PublishController::class, 'publish_post'])->name('publish_post');
+
+        Route::prefix('details')->name('details.')->group(function () {
+            Route::prefix('update')->name('update.')->group(function () {
+                Route::get('/', [DtailsController::class, 'view_update'])->name('view');
+                Route::post('/', [DtailsController::class, 'action_update'])->name('action');
+            });
+            Route::get('view', [DtailsController::class, 'view'])->name('view');
+            Route::get('delete', [DtailsController::class, 'delete'])->name('delete');
+        });
+    });
+
+
 });
 //End Profile/////////////////////////////////////
 
 // admin
-route::get('/admin',[adminController:: class, 'admin'])->name('admin');
+Route::prefix('manager')->name('manager.')->group(function (){
+    route::get('/',[ManagerController:: class, 'manager'])->name('view');
+    Route::post('/{user}/accept_status', [AcceptController::class, 'accept_status'])->name('accept_status');
+});
+
 // End admin/////////////////////////////////////
 
 // Home
@@ -104,6 +133,7 @@ route::get('/cards',[HomeController:: class, 'cards'])->name('cards');
 route::get('/admins',[HomeController:: class, 'admin'])->name('admin');
 
 
+route::get('/dashboard',[dashboardController:: class, 'dashboard'])->name('dashboard');
 
 
 // اگه مثلا بخواهی لایک هایی که این کامنت میخوره رو ببینی

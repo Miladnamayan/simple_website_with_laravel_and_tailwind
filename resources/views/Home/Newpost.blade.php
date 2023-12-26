@@ -2,14 +2,13 @@
 @section('content')
     <div class="card w-96 bg-base-100 shadow-xl  ring-2 ring-gray-900 ">
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form class="card-body" method="Post" action="{{ route('profiles.newpost.create') }}" enctype="multipart/form-data">
+            <form class="card-body" method="Post" action={{ route('profiles.newpost.create') }} enctype="multipart/form-data">
                 @csrf
                 <div class="form-control" >
                     <label class="label">
                         <span class="label-text">Pick one category:</span>
                     </label>
                     <select class="select select-primary w-full max-w-xs   @error('category_id') is-invalid @enderror"  name="category_id"   required>
-                        {{-- <option disabled selected>Pick one category</option> --}}
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                         @endforeach

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Post extends Model
 {
@@ -15,7 +16,7 @@ class Post extends Model
         'body',
         'picture',
         'category_id',
-        'status'
+        'post_status'
     ];
 
     protected $table='posts';
@@ -39,4 +40,16 @@ class Post extends Model
     public function isAuthUserLikedPost(){
         return $this->likes()->where('user_id',  auth()->id())->exists();
      }
+
+
+    public function views(){
+       return $this->hasMany(PostView::class, 'post_id');
+    }
+
+    public function scopeCreatedToday($query)
+    {
+        return $query->whereDate('created_at', today());
+    }
+
 }
+

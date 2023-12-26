@@ -19,10 +19,11 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Post $posts): bool
+    public function view(User $user, Post $post): bool
     {
+        // return $post->user_id===$user->id;
         // dd($posts);
-    //    return $posts->user_id===$user->id;
+       return $post->user_id===$user->id;
     //    return $user->id === $posts->user_id;
     }
 
@@ -39,7 +40,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        // return $post->user_id===$user->id;
+        return $post->user_id===$user->id;
     }
 
     /**
@@ -47,7 +48,9 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        // return $post->user_id===$user->id;
+        return $post->user_id===$user->id;
+
+
     }
 
     /**
